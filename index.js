@@ -30,18 +30,22 @@ app.get("/", (req, res) => {
 
 app.get("/database", (req, res) => {
 
-    var datas = []
-
+    let datas = []
+    let fields = []
     client.connect();
-
-    client.query('SELECT * FROM item;', (err, reply) => {
+    let sqlString = 'select iname as Name, iprice as Price from items;'
+    client.query(sqlString, (err, reply) => {
         if (err) throw err;
         // console.log(res);
-        for (let row of reply.rows) {
-            datas.push((row));
+        for (const field of reply.fields) {
+            fields.push(field)
+        }
+        for (const row of reply.rows) {
+            datas.push(row);
         }
         res.render('database', {
-            tableContents: datas
+            tableContents: datas,
+            tableHeaders: fields,
         });
         console.log(datas);
 
@@ -52,4 +56,5 @@ app.get("/database", (req, res) => {
 
 app.post("/", (req, res) => {
     console.log(req.body.elementName);
+    res.redirect('/database')
 })

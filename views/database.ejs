@@ -286,29 +286,25 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <!--render table header using ejs-->
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-
+                                            <% for(let i=0;i<tableHeaders.length;i++){ %>
+                                                <td>
+                                                    <%= tableHeaders[i].name %>
+                                                </td>
+                                                <% } %>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-
-                                        </tr>
-                                    </tfoot>
+                                    <!--render table content according to header name using ejs-->
                                     <tbody>
                                         <% for(let i=0;i<tableContents.length;i++){ %>
                                             <tr>
-                                                <td>
-                                                    <%= tableContents[i].iid %>
-                                                </td>
-                                                <td>
-                                                    <%= tableContents[i].iname %>
-                                                </td>
+                                                <% for(let j=0;j<tableHeaders.length;j++){ %>
+                                                    <td>
+                                                        <%= tableContents[i][tableHeaders[j].name] %>
+                                                    </td>
+                                                    <% } %>
                                             </tr>
                                             <% } %>
                                     </tbody>

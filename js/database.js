@@ -1,3 +1,4 @@
+//form post validation function, copied from bootstrap official
 (function() {
     'use strict';
     window.addEventListener('load', function() {
