@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/TaoGe96/master_plan_cusd#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pg": "^8.4.2"
   }
 }
